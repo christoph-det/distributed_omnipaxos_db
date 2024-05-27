@@ -1,0 +1,631 @@
+
+running 1 test
+Node 4 is running
+Node 2 is running
+Node 5 is running
+Node 3 is running
+Node 1 is running
+
+The nodes are:
+NodeID: 2, isRunning true, CurrentLeader: 5 ReplicatedDurability: None, MemoryDurability: 0, OmniPaxosDecided: 0 Connections: [1, 3, 5, 4], ReceivedMessagesSize: 8 KB
+NodeID: 3, isRunning true, CurrentLeader: 5 ReplicatedDurability: None, MemoryDurability: 0, OmniPaxosDecided: 0 Connections: [5, 2, 4, 1], ReceivedMessagesSize: 8 KB
+NodeID: 4, isRunning true, CurrentLeader: 5 ReplicatedDurability: None, MemoryDurability: 0, OmniPaxosDecided: 0 Connections: [2, 1, 5, 3], ReceivedMessagesSize: 8 KB
+NodeID: 5, isRunning true, CurrentLeader: 5 ReplicatedDurability: None, MemoryDurability: 0, OmniPaxosDecided: 0 Connections: [1, 4, 2, 3], ReceivedMessagesSize: 9 KB
+NodeID: 1, isRunning true, CurrentLeader: 5 ReplicatedDurability: None, MemoryDurability: 0, OmniPaxosDecided: 0 Connections: [4, 2, 5, 3], ReceivedMessagesSize: 8 KB
+
+Comitting 100 transaction to current leader.
+Creating transaction with key: TxKey01710271476041119000
+Node 5 is advancing replicated durability offset
+Node 3 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 4 is applying replicated transactions
+Creating transaction with key: TxKey11710271476064921000
+Node 5 is advancing replicated durability offset
+Node 3 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 4 is applying replicated transactions
+Creating transaction with key: TxKey21710271476094528000
+Node 5 is advancing replicated durability offset
+Node 1 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 2 is applying replicated transactions
+Creating transaction with key: TxKey31710271476119490000
+Node 5 is advancing replicated durability offset
+Node 1 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 2 is applying replicated transactions
+Creating transaction with key: TxKey41710271476144848000
+Node 5 is advancing replicated durability offset
+Node 2 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 3 is applying replicated transactions
+Creating transaction with key: TxKey51710271476169993000
+Node 5 is advancing replicated durability offset
+Node 4 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 1 is applying replicated transactions
+Creating transaction with key: TxKey61710271476194156000
+Node 5 is advancing replicated durability offset
+Node 1 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 4 is applying replicated transactions
+Creating transaction with key: TxKey71710271476218988000
+Node 5 is advancing replicated durability offset
+Node 4 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 2 is applying replicated transactions
+Creating transaction with key: TxKey81710271476242977000
+Node 5 is advancing replicated durability offset
+Node 4 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 3 is applying replicated transactions
+Creating transaction with key: TxKey91710271476268883000
+Node 5 is advancing replicated durability offset
+Node 4 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 2 is applying replicated transactions
+Creating transaction with key: TxKey101710271476295798000
+Node 5 is advancing replicated durability offset
+Node 2 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 3 is applying replicated transactions
+Creating transaction with key: TxKey111710271476318242000
+Node 5 is advancing replicated durability offset
+Node 2 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 3 is applying replicated transactions
+Creating transaction with key: TxKey121710271476342843000
+Node 5 is advancing replicated durability offset
+Node 4 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 1 is applying replicated transactions
+Creating transaction with key: TxKey131710271476367822000
+Node 5 is advancing replicated durability offset
+Node 2 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 1 is applying replicated transactions
+Creating transaction with key: TxKey141710271476393248000
+Node 5 is advancing replicated durability offset
+Node 3 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 1 is applying replicated transactions
+Creating transaction with key: TxKey151710271476418853000
+Node 5 is advancing replicated durability offset
+Node 3 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 1 is applying replicated transactions
+Creating transaction with key: TxKey161710271476444131000
+Node 5 is advancing replicated durability offset
+Node 4 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 2 is applying replicated transactions
+Creating transaction with key: TxKey171710271476468528000
+Node 5 is advancing replicated durability offset
+Node 3 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 1 is applying replicated transactions
+Creating transaction with key: TxKey181710271476493168000
+Node 5 is advancing replicated durability offset
+Node 4 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 3 is applying replicated transactions
+Creating transaction with key: TxKey191710271476517749000
+Node 5 is advancing replicated durability offset
+Node 2 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 1 is applying replicated transactions
+Creating transaction with key: TxKey201710271476539967000
+Node 5 is advancing replicated durability offset
+Node 2 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 4 is applying replicated transactions
+Creating transaction with key: TxKey211710271476561295000
+Node 5 is advancing replicated durability offset
+Node 3 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 4 is applying replicated transactions
+Creating transaction with key: TxKey221710271476583873000
+Node 5 is advancing replicated durability offset
+Node 2 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 4 is applying replicated transactions
+Creating transaction with key: TxKey231710271476606895000
+Node 5 is advancing replicated durability offset
+Node 4 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 2 is applying replicated transactions
+Creating transaction with key: TxKey241710271476629581000
+Node 5 is advancing replicated durability offset
+Node 4 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 3 is applying replicated transactions
+Creating transaction with key: TxKey251710271476661057000
+Node 5 is advancing replicated durability offset
+Node 3 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 1 is applying replicated transactions
+Creating transaction with key: TxKey261710271476684602000
+Node 5 is advancing replicated durability offset
+Node 1 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 3 is applying replicated transactions
+Creating transaction with key: TxKey271710271476705259000
+Node 5 is advancing replicated durability offset
+Node 3 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 1 is applying replicated transactions
+Creating transaction with key: TxKey281710271476729688000
+Node 5 is advancing replicated durability offset
+Node 4 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 1 is applying replicated transactions
+Creating transaction with key: TxKey291710271476751280000
+Node 5 is advancing replicated durability offset
+Node 4 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 2 is applying replicated transactions
+Creating transaction with key: TxKey301710271476773037000
+Node 5 is advancing replicated durability offset
+Node 3 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 4 is applying replicated transactions
+Creating transaction with key: TxKey311710271476795519000
+Node 5 is advancing replicated durability offset
+Node 4 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 1 is applying replicated transactions
+Creating transaction with key: TxKey321710271476819449000
+Node 5 is advancing replicated durability offset
+Node 3 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 1 is applying replicated transactions
+Creating transaction with key: TxKey331710271476849127000
+Node 5 is advancing replicated durability offset
+Node 3 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 4 is applying replicated transactions
+Creating transaction with key: TxKey341710271476869446000
+Node 5 is advancing replicated durability offset
+Node 2 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 3 is applying replicated transactions
+Creating transaction with key: TxKey351710271476894530000
+Node 5 is advancing replicated durability offset
+Node 1 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 3 is applying replicated transactions
+Creating transaction with key: TxKey361710271476919660000
+Node 5 is advancing replicated durability offset
+Node 4 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 1 is applying replicated transactions
+Creating transaction with key: TxKey371710271476943875000
+Node 5 is advancing replicated durability offset
+Node 2 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 1 is applying replicated transactions
+Creating transaction with key: TxKey381710271476969166000
+Node 5 is advancing replicated durability offset
+Node 1 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 3 is applying replicated transactions
+Creating transaction with key: TxKey391710271476998393000
+Node 5 is advancing replicated durability offset
+Node 1 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 2 is applying replicated transactions
+Creating transaction with key: TxKey401710271477026503000
+Node 4 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 5 is advancing replicated durability offset
+Node 4 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 3 is applying replicated transactions
+Creating transaction with key: TxKey411710271477050324000
+Node 5 is advancing replicated durability offset
+Node 3 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 2 is applying replicated transactions
+Creating transaction with key: TxKey421710271477075437000
+Node 5 is advancing replicated durability offset
+Node 1 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 2 is applying replicated transactions
+Creating transaction with key: TxKey431710271477100738000
+Node 5 is advancing replicated durability offset
+Node 1 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 4 is applying replicated transactions
+Creating transaction with key: TxKey441710271477125811000
+Node 5 is advancing replicated durability offset
+Node 1 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 4 is applying replicated transactions
+Creating transaction with key: TxKey451710271477146156000
+Node 5 is advancing replicated durability offset
+Node 2 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 4 is applying replicated transactions
+Creating transaction with key: TxKey461710271477168873000
+Node 5 is advancing replicated durability offset
+Node 4 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 2 is applying replicated transactions
+Creating transaction with key: TxKey471710271477189241000
+Node 5 is advancing replicated durability offset
+Node 3 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 4 is applying replicated transactions
+Creating transaction with key: TxKey481710271477211745000
+Node 5 is advancing replicated durability offset
+Node 3 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 1 is applying replicated transactions
+Creating transaction with key: TxKey491710271477242466000
+Node 5 is advancing replicated durability offset
+Node 1 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 3 is applying replicated transactions
+Creating transaction with key: TxKey501710271477263556000
+Node 5 is advancing replicated durability offset
+Node 4 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 3 is applying replicated transactions
+Creating transaction with key: TxKey511710271477284523000
+Node 5 is advancing replicated durability offset
+Node 1 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 3 is applying replicated transactions
+Creating transaction with key: TxKey521710271477309147000
+Node 5 is advancing replicated durability offset
+Node 4 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 1 is applying replicated transactions
+Creating transaction with key: TxKey531710271477334388000
+Node 5 is advancing replicated durability offset
+Node 2 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 1 is applying replicated transactions
+Creating transaction with key: TxKey541710271477376222000
+Node 5 is advancing replicated durability offset
+Node 4 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 1 is applying replicated transactions
+Creating transaction with key: TxKey551710271477401767000
+Node 5 is advancing replicated durability offset
+Node 4 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 1 is applying replicated transactions
+Creating transaction with key: TxKey561710271477425310000
+Node 5 is advancing replicated durability offset
+Node 2 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 1 is applying replicated transactions
+Creating transaction with key: TxKey571710271477445668000
+Node 5 is advancing replicated durability offset
+Node 2 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 1 is applying replicated transactions
+Creating transaction with key: TxKey581710271477470370000
+Node 5 is advancing replicated durability offset
+Node 1 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 3 is applying replicated transactions
+Creating transaction with key: TxKey591710271477494151000
+Node 5 is advancing replicated durability offset
+Node 1 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 3 is applying replicated transactions
+Creating transaction with key: TxKey601710271477519843000
+Node 5 is advancing replicated durability offset
+Node 1 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 3 is applying replicated transactions
+Creating transaction with key: TxKey611710271477542184000
+Node 5 is advancing replicated durability offset
+Node 3 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 1 is applying replicated transactions
+Creating transaction with key: TxKey621710271477567109000
+Node 5 is advancing replicated durability offset
+Node 4 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 1 is applying replicated transactions
+Creating transaction with key: TxKey631710271477588765000
+Node 5 is advancing replicated durability offset
+Node 1 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 4 is applying replicated transactions
+Creating transaction with key: TxKey641710271477612825000
+Node 5 is advancing replicated durability offset
+Node 1 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 2 is applying replicated transactions
+Creating transaction with key: TxKey651710271477637377000
+Node 5 is advancing replicated durability offset
+Node 1 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 2 is applying replicated transactions
+Creating transaction with key: TxKey661710271477661139000
+Node 5 is advancing replicated durability offset
+Node 4 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 3 is applying replicated transactions
+Creating transaction with key: TxKey671710271477686251000
+Node 5 is advancing replicated durability offset
+Node 1 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 3 is applying replicated transactions
+Creating transaction with key: TxKey681710271477710748000
+Node 5 is advancing replicated durability offset
+Node 1 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 4 is applying replicated transactions
+Creating transaction with key: TxKey691710271477735273000
+Node 5 is advancing replicated durability offset
+Node 1 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 3 is applying replicated transactions
+Creating transaction with key: TxKey701710271477757203000
+Node 5 is advancing replicated durability offset
+Node 3 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 2 is applying replicated transactions
+Creating transaction with key: TxKey711710271477780093000
+Node 5 is advancing replicated durability offset
+Node 2 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 4 is applying replicated transactions
+Creating transaction with key: TxKey721710271477805468000
+Node 5 is advancing replicated durability offset
+Node 4 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 2 is applying replicated transactions
+Creating transaction with key: TxKey731710271477828562000
+Node 5 is advancing replicated durability offset
+Node 4 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 3 is applying replicated transactions
+Creating transaction with key: TxKey741710271477850208000
+Node 5 is advancing replicated durability offset
+Node 1 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 4 is applying replicated transactions
+Creating transaction with key: TxKey751710271477878378000
+Node 5 is advancing replicated durability offset
+Node 2 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 3 is applying replicated transactions
+Creating transaction with key: TxKey761710271477902995000
+Node 5 is advancing replicated durability offset
+Node 1 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 3 is applying replicated transactions
+Creating transaction with key: TxKey771710271477927239000
+Node 5 is advancing replicated durability offset
+Node 4 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 1 is applying replicated transactions
+Creating transaction with key: TxKey781710271477949127000
+Node 5 is advancing replicated durability offset
+Node 4 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 2 is applying replicated transactions
+Creating transaction with key: TxKey791710271477973142000
+Node 5 is advancing replicated durability offset
+Node 2 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 1 is applying replicated transactions
+Creating transaction with key: TxKey801710271477997159000
+Node 5 is advancing replicated durability offset
+Node 4 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 1 is applying replicated transactions
+Creating transaction with key: TxKey811710271478022163000
+Node 5 is advancing replicated durability offset
+Node 4 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 1 is applying replicated transactions
+Creating transaction with key: TxKey821710271478047272000
+Node 5 is advancing replicated durability offset
+Node 2 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 4 is applying replicated transactions
+Creating transaction with key: TxKey831710271478072381000
+Node 5 is advancing replicated durability offset
+Node 3 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 4 is applying replicated transactions
+Creating transaction with key: TxKey841710271478097257000
+Node 5 is advancing replicated durability offset
+Node 3 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 1 is applying replicated transactions
+Creating transaction with key: TxKey851710271478122181000
+Node 5 is advancing replicated durability offset
+Node 3 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 2 is applying replicated transactions
+Creating transaction with key: TxKey861710271478146199000
+Node 5 is advancing replicated durability offset
+Node 2 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 3 is applying replicated transactions
+Creating transaction with key: TxKey871710271478170002000
+Node 5 is advancing replicated durability offset
+Node 2 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 4 is applying replicated transactions
+Creating transaction with key: TxKey881710271478195547000
+Node 5 is advancing replicated durability offset
+Node 4 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 2 is applying replicated transactions
+Creating transaction with key: TxKey891710271478219168000
+Node 5 is advancing replicated durability offset
+Node 1 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 3 is applying replicated transactions
+Creating transaction with key: TxKey901710271478244138000
+Node 5 is advancing replicated durability offset
+Node 4 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 1 is applying replicated transactions
+Creating transaction with key: TxKey911710271478270163000
+Node 5 is advancing replicated durability offset
+Node 2 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 3 is applying replicated transactions
+Creating transaction with key: TxKey921710271478293644000
+Node 5 is advancing replicated durability offset
+Node 4 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 2 is applying replicated transactions
+Creating transaction with key: TxKey931710271478318910000
+Node 5 is advancing replicated durability offset
+Node 1 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 4 is applying replicated transactions
+Creating transaction with key: TxKey941710271478345337000
+Node 5 is advancing replicated durability offset
+Node 4 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 2 is applying replicated transactions
+Creating transaction with key: TxKey951710271478368397000
+Node 5 is advancing replicated durability offset
+Node 3 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 2 is applying replicated transactions
+Creating transaction with key: TxKey961710271478392893000
+Node 5 is advancing replicated durability offset
+Node 3 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 1 is applying replicated transactions
+Creating transaction with key: TxKey971710271478416241000
+Node 5 is advancing replicated durability offset
+Node 4 is applying replicated transactions
+Node 3 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 1 is applying replicated transactions
+Creating transaction with key: TxKey981710271478437896000
+Node 5 is advancing replicated durability offset
+Node 3 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 1 is applying replicated transactions
+Node 2 is applying replicated transactions
+Creating transaction with key: TxKey991710271478459020000
+Node 5 is advancing replicated durability offset
+Node 1 is applying replicated transactions
+Node 4 is applying replicated transactions
+Node 2 is applying replicated transactions
+Node 3 is applying replicated transactions
+
+The nodes are:
+NodeID: 2, isRunning true, CurrentLeader: 5 ReplicatedDurability: 99, MemoryDurability: 99, OmniPaxosDecided: 99 Connections: [1, 3, 5, 4], ReceivedMessagesSize: 138 KB
+NodeID: 3, isRunning true, CurrentLeader: 5 ReplicatedDurability: 99, MemoryDurability: 99, OmniPaxosDecided: 99 Connections: [5, 2, 4, 1], ReceivedMessagesSize: 138 KB
+NodeID: 4, isRunning true, CurrentLeader: 5 ReplicatedDurability: 99, MemoryDurability: 99, OmniPaxosDecided: 99 Connections: [2, 1, 5, 3], ReceivedMessagesSize: 138 KB
+NodeID: 5, isRunning true, CurrentLeader: 5 ReplicatedDurability: 99, MemoryDurability: 99, OmniPaxosDecided: 99 Connections: [1, 4, 2, 3], ReceivedMessagesSize: 131 KB
+NodeID: 1, isRunning true, CurrentLeader: 5 ReplicatedDurability: 99, MemoryDurability: 99, OmniPaxosDecided: 99 Connections: [4, 2, 5, 3], ReceivedMessagesSize: 138 KB
+
+Replicated data is correct at all nodes.
+
+test tests::tests::test_many_tx_throughput ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 18 filtered out; finished in 4.47s
+
