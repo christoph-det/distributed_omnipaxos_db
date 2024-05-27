@@ -151,28 +151,28 @@ pub mod tests {
         print_nodes(&nodes);
 
 
-         // create a larger transaction
-         let mut tx = nodes.get(&leader).unwrap().0.lock().unwrap().begin_mut_tx().unwrap();
-         let mut data = String::new();
-         for i in 0..100000 {
-             data += "Hallo";
-         }
-         tx.set("Test".to_string(), data.to_string());
- 
-         println!("Transaction created.");
- 
-         // commit the transaction
-         let result = nodes.get(&leader).unwrap().0.lock().unwrap().commit_mut_tx(tx);
-         assert_eq!(result.is_ok(), true);
- 
-         println!("Transaction commited.");
-         println!("Waiting for replication...");
-         println!();
- 
-         std::thread::sleep(WAIT_REPLICATION_TIMEOUT);
- 
-         
-         print_nodes(&nodes);
+        // create a larger transaction
+        let mut tx = nodes.get(&leader).unwrap().0.lock().unwrap().begin_mut_tx().unwrap();
+        let mut data = String::new();
+        for i in 0..100000 {
+            data += "Hallo";
+        }
+        tx.set("Test".to_string(), data.to_string());
+
+        println!("Transaction created.");
+
+        // commit the transaction
+        let result = nodes.get(&leader).unwrap().0.lock().unwrap().commit_mut_tx(tx);
+        assert_eq!(result.is_ok(), true);
+
+        println!("Transaction commited.");
+        println!("Waiting for replication...");
+        println!();
+
+        std::thread::sleep(WAIT_REPLICATION_TIMEOUT);
+
+        
+        print_nodes(&nodes);
 
     }
 
@@ -190,7 +190,7 @@ pub mod tests {
         print_nodes(&nodes);
 
         println!("Comitting 100 transaction to current leader.");
-        transactions_ids_data.extend(commit_transactions(leader, &nodes, 10));
+        transactions_ids_data.extend(commit_transactions(leader, &nodes, 100));
 
         std::thread::sleep(WAIT_REPLICATION_TIMEOUT * 2);
 
@@ -257,22 +257,19 @@ pub mod tests {
         println!();        
         print_nodes(&nodes);
 
-       println!("Comitting one transaction to new leader.");
-       transactions_ids_data.extend(commit_transactions(new_leader, &nodes, 1));
-       assert!(transactions_ids_data.len() == 3, "There should be 3 transactions commited now");
+        println!("Comitting one transaction to new leader.");
+        transactions_ids_data.extend(commit_transactions(new_leader, &nodes, 1));
+        assert!(transactions_ids_data.len() == 3, "There should be 3 transactions commited now");
 
         std::thread::sleep(WAIT_REPLICATION_TIMEOUT);
-
 
         println!();        
         print_nodes(&nodes);
         println!("One transaction commited, offset correctly advanced, old leader is not changing anymore.");
-         // check if the data is correct
-         check_replication(&nodes, &transactions_ids_data);
-         println!("Replicated data is correct at all nodes.");
-         println!()
- 
-
+        // check if the data is correct
+        check_replication(&nodes, &transactions_ids_data);
+        println!("Replicated data is correct at all nodes.");
+        println!()
     }
 
     /// 3. Find the leader and commit a transaction. Disconnect the leader from the other nodes and continue to commit transactions before the OmniPaxos election timeout. Verify that the transaction was first committed in memory but later rolled back.
@@ -505,15 +502,15 @@ pub mod tests {
         println!("Disconnected all nodes except two of the followers and the leader.");
 
         // Disconnect everything but two nodes and leader to prepere for the next test
-         let keep_connections = vec![(leader, followers[0]), (leader, followers[1]), (followers[0], followers[1])];
-         // delete all other connections
-         for pid_a in SERVERS {
-             for pid_b in SERVERS {
-                 if pid_a != pid_b && !keep_connections.contains(&(pid_a, pid_b)) && !keep_connections.contains(&(pid_b, pid_a)){
-                     delete_connections(pid_a, pid_b, &nodes);
-                 }
-             }
-         }
+        let keep_connections = vec![(leader, followers[0]), (leader, followers[1]), (followers[0], followers[1])];
+        // delete all other connections
+        for pid_a in SERVERS {
+            for pid_b in SERVERS {
+                if pid_a != pid_b && !keep_connections.contains(&(pid_a, pid_b)) && !keep_connections.contains(&(pid_b, pid_a)){
+                    delete_connections(pid_a, pid_b, &nodes);
+                }
+            }
+        }
 
         std::thread::sleep(WAIT_LEADER_TIMEOUT);
         print_nodes(&nodes);
@@ -685,7 +682,7 @@ pub mod tests {
         node.omni_durability.lock().unwrap().get_current_leader().unwrap()
     }
 
-    pub fn print_nodes(nodes: &HashMap<NodeId, (Arc<Mutex<Node>>, JoinHandle<()>)>) {
+    fn print_nodes(nodes: &HashMap<NodeId, (Arc<Mutex<Node>>, JoinHandle<()>)>) {
         println!("The nodes are:");
         for (_, (node, _)) in nodes {
             println!("{}", node.lock().unwrap().to_string());
@@ -700,7 +697,7 @@ pub mod tests {
         for i in 0..tx_amount {
             // create a transaction
             let tx_key = format!("TxKey{}{}", i, SystemTime::now().duration_since(SystemTime::UNIX_EPOCH).expect("Time should not run backwards").as_nanos());
-            let tx_data = format!("TxData{}", "HelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHelloHello");
+            let tx_data = format!("TxData{}", i);
             println!("Creating transaction with key: {}", tx_key);
             tx_ids_data.insert(tx_key.clone(), tx_data.clone());
             let mut tx = nodes.get(&leader).unwrap().0.lock().unwrap().begin_mut_tx().unwrap();

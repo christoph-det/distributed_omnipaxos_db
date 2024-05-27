@@ -1,7 +1,6 @@
 // TEMPORARILY disable warnings
 #![allow(warnings)]
 
-pub mod bonustask;
 pub mod datastore;
 pub mod durability;
 pub mod node;

@@ -1,4 +1,5 @@
 use omnipaxos::macros::Entry;
+//use omnipaxos::macros::{Entry, UniCacheEntry, UniCacheSerdeEntry};
 use omnipaxos::messages::Message as OPMessage;
 use omnipaxos::util::{LogEntry, NodeId};
 use omnipaxos::OmniPaxos;
@@ -14,33 +15,26 @@ use crate::{
 
 use crate::durability::omnipaxos_durability::storage::Entry;
 use serde::{Deserialize, Deserializer, Serialize, Serializer};
-use omnipaxos::unicache::MaybeEncoded;
-use omnipaxos::macros::UniCacheSerdeEntry;
-use omnipaxos::unicache::*;
 
-use omnipaxos::unicache::UniCache;
-use omnipaxos::macros::UniCacheEntry;
-use crate::bonustask::AccessLogEntry;
-
-
-//#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize, UniCacheSerdeEntry)]
-#[derive(Clone, Debug, PartialEq, Eq, Hash, Deserialize, Serialize, UniCacheSerdeEntry)]
+#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize, Entry)]
 pub struct DatabaseLogEntry {
     tx_offset: TxOffset,
     tx_data: TxData,
-    #[cfg_attr(feature = "project_use_unicache", unicache(encoding(u8), cache(lfu), size(10000)))] // Apply conditionally
-    ip: String,
-    #[cfg_attr(feature = "project_use_unicache", unicache(encoding(u8), cache(lfu), size(10000)))]
-    date: String,
-    // #[cfg_attr(feature = "project_use_unicache", unicache(encoding(u16), cache(lru)))]
-    time: String,
-    // #[cfg_attr(feature = "project_use_unicache", unicache(encoding(u8), cache(lru)))]
-    offset: i16,
-    #[cfg_attr(feature = "project_use_unicache", unicache(encoding(u8), cache(lfu), size(10000)))]
-    url: String,
-    #[cfg_attr(feature = "project_use_unicache", unicache(encoding(u8), cache(lfu), size(10000)))]
-    method_protocol_status: String,
-    response_size: u16
+}
+
+impl DatabaseLogEntry {
+    pub fn serialize<W: Write>(&self, writer: &mut W) -> std::io::Result<()> {
+        writer.write_all(&self.tx_offset.0.to_le_bytes())?;
+        self.tx_data.serialize(writer)
+    }
+
+    fn deserialize<R: Read>(reader: &mut R) -> std::io::Result<Self> {
+        let mut bytes = [0; 8];
+        reader.read_exact(&mut bytes)?;
+        let tx_offset = TxOffset(u64::from_le_bytes(bytes));
+        let tx_data = TxData::deserialize(reader)?;
+        Ok(DatabaseLogEntry { tx_offset, tx_data })
+    }
 }
 
 /// OmniPaxosDurability is a OmniPaxos node that should provide the replicated
@@ -60,7 +54,7 @@ impl OmniPaxosDurability {
         }
     }
 
-    //below code for omnipaxos_setup was copied from omnipaxos.com
+    // code below for omnipaxos_setup was copied from omnipaxos.com
     fn omnipaxos_setup(
         node_id: NodeId,
         node_array: &[NodeId],
@@ -78,7 +72,7 @@ impl OmniPaxosDurability {
             ..Default::default()
         };
 
-        // Combined OmniPaxos config with both clsuter-wide and server specific configurations
+        // Combined OmniPaxos config with both cluster-wide and server specific configurations
         let omnipaxos_config = OmniPaxosConfig {
             cluster_config,
             server_config,
@@ -95,10 +89,8 @@ impl OmniPaxosDurability {
         self.omnipaxos.tick();
     }
 
-    //handles all incoming messages as omnipaxos messages
+    // handles all incoming messages as omnipaxos messages
     pub fn handle_incoming(&mut self, msg: OPMessage<DatabaseLogEntry>) {
-        //println!("Handling incoming message from {:?} to {:?}", msg.get_sender(), msg.get_receiver());
-        //println!("{:?}", msg);
         self.omnipaxos.handle_incoming(msg);
     }
 
@@ -110,7 +102,7 @@ impl OmniPaxosDurability {
         return self.omnipaxos.get_current_leader() == Some(self.node_id);
     }
 
-    //only returns Decided entries
+    // only returns Decided entries
     pub fn read_decided_at_position(&self, pos: u64) -> Option<(TxOffset, TxData)> {
         let log_entry = self.omnipaxos.read(pos.try_into().unwrap()).unwrap();
         match log_entry {
@@ -144,11 +136,10 @@ impl DurabilityLayer for OmniPaxosDurability {
         let mut offset = offset.0;
         let mut decided_entries = Vec::new();
         // if idx is 0, then there is only one entry in the log
-        let mut omnipaxos_decided_idx = self.omnipaxos.get_decided_idx();
-        if (omnipaxos_decided_idx == 0) {
+        if (self.omnipaxos.get_decided_idx() == 0) {
             decided_entries = vec![self.omnipaxos.read(offset.try_into().unwrap()).unwrap()]
         } else {
-            for i in offset + 1..(omnipaxos_decided_idx as u64) + 1 {
+            for i in offset + 1..(self.omnipaxos.get_decided_idx() as u64) + 1 {
                 let log_entry = self.omnipaxos.read(i.try_into().unwrap());
                 match log_entry {
                     Some(entry) => {
@@ -159,7 +150,6 @@ impl DurabilityLayer for OmniPaxosDurability {
             }
         }
         Box::new(decided_entries.into_iter().filter_map(|log_entry| {
-            // not optimal syntax but not sure how to do this propperly in rust
             if let LogEntry::Decided(entry) = log_entry {
                 Some((entry.tx_offset, entry.tx_data))
             } else {
@@ -170,18 +160,11 @@ impl DurabilityLayer for OmniPaxosDurability {
     }
 
     /// Append a new transaction to the omnipaxos log
-    fn append_tx(&mut self, tx_offset: TxOffset, tx_data: TxData, ale: AccessLogEntry) {
+    fn append_tx(&mut self, tx_offset: TxOffset, tx_data: TxData) {
         self.omnipaxos
             .append(DatabaseLogEntry {
                 tx_offset: tx_offset,
                 tx_data: tx_data,
-                ip: ale.ip,
-                date: ale.day.to_string() + " - " + &ale.month + " - " + &ale.year.to_string(),
-                time: ale.time,
-                offset: ale.offset,
-                url: ale.url,
-                method_protocol_status: ale.method + " - " + &ale.protocol.to_string() + " - " + &ale.status_code.to_string(),
-                response_size: ale.response_size,
             })
             .expect("append failed");
     }

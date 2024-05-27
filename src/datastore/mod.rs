@@ -8,10 +8,10 @@ use self::error::DatastoreError;
 use self::tx_data::{TxData, TxResult};
 use crate::durability::DurabilityLevel;
 
-#[derive(Debug, Copy, Clone, Serialize, Deserialize, Eq, PartialEq, Hash)]
+#[derive(Debug, Copy, Clone, Serialize, Deserialize, Eq, PartialEq)]
 pub struct TableId(pub u32);
 
-#[derive(Debug, Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize, Hash)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Serialize, Deserialize)]
 pub struct TxOffset(pub u64);
 
 pub trait Datastore<K, V> {

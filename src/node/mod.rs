@@ -1,4 +1,3 @@
-use crate::bonustask::AccessLogEntry;
 use crate::datastore::error::DatastoreError;
 use crate::datastore::example_datastore::ExampleDatastore;
 use crate::datastore::tx_data::TxResult;
@@ -27,7 +26,7 @@ const MSG_HANDLING_PERIOD: Duration = Duration::from_millis(1);
 
 pub struct NodeRunner {
     pub node: Arc<Mutex<Node>>,
-    // The receiver is in the node runner since it hanldes the incomming messages
+    // The receiver is in the node runner since it handles the incoming messages
     pub receiver: mpsc::Receiver<Message<DatabaseLogEntry>>,
 }
 
@@ -53,7 +52,7 @@ impl NodeRunner {
             let receiver = msg.get_receiver();
             let mut connections = self.node.lock().unwrap().connections.clone();
             if (!connections.contains_key(&receiver)) {
-                // if the recceiver is not connected to the node we skip the message
+                // if the receiver is not connected to the node we skip the message
                 continue;
             }
             let channel = connections
@@ -69,7 +68,7 @@ impl NodeRunner {
         let mut msg_handling_interval = time::interval(MSG_HANDLING_PERIOD); // From omnipaxos examples
 
         while (self.node.lock().unwrap().is_running) {
-            // takes the branch that finished first while maintaining order, so every 10ms tick_intervall, every 1ms msg handling and if there is a message in the receiver
+            // takes the branch that finished first while maintaining order, so every 10ms tick_interval, every 1ms msg handling and if there is a message in the receiver
             tokio::select! {
                 biased;
                 _ = tick_interval.tick() => { self.node.lock().unwrap().omni_durability.lock().unwrap().tick(); },
@@ -80,25 +79,12 @@ impl NodeRunner {
 
                 }
                 Some(in_msg) = self.receiver.recv() => {
+                    let serialized = serde_json::to_string(&in_msg).expect("serialization failed");
+                    let size_string = serialized.len();
+                    self.node.lock().unwrap().received_messages_size += size_string as u64;
                     let in_msg_checking = in_msg.clone();
-                    self.node.lock().unwrap().omni_durability.lock().unwrap().handle_incoming(in_msg);
 
-                    // to only check the messages with the actual data
-                    match in_msg_checking {
-                        Message::SequencePaxos(msg) => {
-                            match msg {
-                                PaxosMessage{from, to, msg} => {
-                                    let serialized = serde_json::to_string(&msg).expect("serialization failed");
-                                    let ser = bincode::serialize(&msg).unwrap();
-                                    //println!("Received message: {}", serialized);
-                                    // this is different to other languges, len returns the number of bytes in the string
-                                    let size_string = ser.len();
-                                    self.node.lock().unwrap().received_messages_size += size_string as u64;
-                                },
-                            }
-                        },
-                        _ => { }
-                    }
+                    self.node.lock().unwrap().omni_durability.lock().unwrap().handle_incoming(in_msg);
                 },
                 else => { }
             }
@@ -179,7 +165,7 @@ impl Node {
                 self.node_id, old_leader, current_leader
             );
             // handle leadership change
-            //leader lost leadership
+            // leader lost leadership
             if old_leader.is_some() && &old_leader.unwrap() == self.node_id() {
                 println!("Node {} lost leadership", self.node_id);
                 if let Err(e) = self.rollback_unreplicated_txns() {
@@ -212,24 +198,24 @@ impl Node {
     /// We need to be careful with which nodes should do this according to desired
     /// behavior in the Datastore as defined by the application.
     fn apply_replicated_txns(&mut self) {
-        let mut omnipaxos_dedcided_index = self
+        let mut omnipaxos_decided_index = self
             .omni_durability
             .lock()
             .unwrap()
             .get_durable_tx_offset_optional();
         let mut replicated_offset = self.last_applied_index;
-        if (omnipaxos_dedcided_index.is_none()
-            || (omnipaxos_dedcided_index.is_some()
+        if (omnipaxos_decided_index.is_none()
+            || (omnipaxos_decided_index.is_some()
                 && replicated_offset.is_some()
-                && omnipaxos_dedcided_index.unwrap() == replicated_offset.unwrap()))
+                && omnipaxos_decided_index.unwrap() == replicated_offset.unwrap()))
         {
             return; // No need to do anything, regardless of role
         }
         // If durability_offset > replicated_offset (replicated lags behind)
-        if (self.omni_durability.lock().unwrap().is_leader() && (!self.got_promoted_leader || self.datastore.lock().unwrap().get_cur_offset().unwrap() == omnipaxos_dedcided_index.unwrap())) {
+        if (self.omni_durability.lock().unwrap().is_leader() && (!self.got_promoted_leader || self.datastore.lock().unwrap().get_cur_offset().unwrap() == omnipaxos_decided_index.unwrap())) {
             // If leader, let omnipaxos advance replicated offset: those in memory will get applied to replicated state
             println!("Node {} is advancing replicated durability offset", self.node_id);
-            self.last_applied_index = omnipaxos_dedcided_index;
+            self.last_applied_index = omnipaxos_decided_index;
             match self.advance_replicated_durability_offset() {
                 Ok(_) => (),
                 Err(e) => println!("Failed to advance replicated durability offset: {}", e),
@@ -291,7 +277,6 @@ impl Node {
         if self.omni_durability.lock().unwrap().is_leader() {
             // If the current node is the leader, commit the transaction
             let data_commit = self.datastore.lock().unwrap().commit_mut_tx(tx);
-            //println!("Committed tx: {:?}", data_commit);
             // If transaction is committed successfully, need to append to durability layer
             // Since: "transactions might be committed locally but later get rolled back" (project description)
             // Even if disconnection happens, need to be able to roll back
@@ -299,7 +284,6 @@ impl Node {
             self.omni_durability.lock().unwrap().append_tx(
                 data_commit.as_ref().unwrap().tx_offset,
                 data_commit.as_ref().unwrap().tx_data.clone(),
-                AccessLogEntry::default() // Temporary!
             );
             data_commit
         } else {

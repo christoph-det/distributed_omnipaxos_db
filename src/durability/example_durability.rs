@@ -9,7 +9,7 @@ use tokio::{
     sync::mpsc,
 };
 
-use crate::{bonustask::AccessLogEntry, datastore::{tx_data::TxData, TxOffset}};
+use crate::datastore::{tx_data::TxData, TxOffset};
 
 use super::DurabilityLayer;
 
@@ -95,7 +95,7 @@ impl ExampleDurabilityLayer {
 }
 
 impl DurabilityLayer for ExampleDurabilityLayer {
-    fn append_tx(&mut self, tx_offset: TxOffset, tx_data: TxData, ale: AccessLogEntry) {
+    fn append_tx(&mut self, tx_offset: TxOffset, tx_data: TxData) {
         // This is where the durability layer would append the transaction to the log.
         // For the example durability layer, we will be writing the TxData to an append only file.
 
@@ -196,7 +196,7 @@ mod tests {
                 deletes: Arc::new([]),
                 truncs: Arc::new([]),
             };
-            dl.append_tx(tx_offset, tx_data, AccessLogEntry::default());
+            dl.append_tx(tx_offset, tx_data);
         });
         std::thread::sleep(WAIT_TIMEOUT);   // wait for tx1 to be replicated...
         
